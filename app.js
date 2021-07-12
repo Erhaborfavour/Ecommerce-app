@@ -27,7 +27,7 @@ const product = products.find((product)=> product.id=== Number (id))
 if (!product)
 return res.status(400).json({ success: false, msg:` no products with id ${id}`})
 
-const newProduct = products.map((product)=>{
+const updatedProduct = products.map((product)=>{
   if (product.id=== Number (id)){
   product.id=Number (id) 
   product.name = name
@@ -38,7 +38,7 @@ const newProduct = products.map((product)=>{
   }
   return product
 })
-res.status(200).json({ success: true, data: newProduct })
+res.status(200).json({ success: true, data: updatedProduct })
 
 })
 
@@ -49,10 +49,10 @@ app.delete ('/products/:id',(req, res)=>{
     if (!product) {
       return res.status(404).json({ success: false, msg: `no product with id ${id}` })
     }
-    const newProduct = products.filter(
+    const deleteProduct = products.filter(
       (product) => product.id !== Number(id)
     )
-    return res.status(200).json({ success: true, data: newProduct})
+    return res.status(200).json({ success: true, data: deleteProduct})
   })
 app.listen(7000, () => {
   console.log(`Express server is currently running on port 7000`)
